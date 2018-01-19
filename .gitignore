@@ -1,0 +1,7 @@
+# stimulus-test ignores... 
+node_modules 
+.cache 
+.DS_Store 
+dist/ 
+yarn.lock 
+*.log

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Stimulus Test</title>
+	<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+	<link rel="stylesheet" href="./node_modules/dialog-polyfill/dialog-polyfill.css">
+	<style>
+		body {
+			font-family: 'Roboto', 'Open Sans', 'Arial', sans-serif;
+			font-size: 20px;
+			line-height: 1.125;
+			padding: 2.5rem;
+		}
+
+		label {
+			display: block;
+		}
+
+		input {
+			display: block;
+			font-size: 1em;
+			margin: .25em 0 1em;
+		}
+	</style>
+</head>
+
+<body>
+	<main data-controller="app">
+		<label for="name">Name
+			<input type="text" name="name" id="name" data-target="app.input" data-action="input->app#echo">
+		</label>
+		<p>Hello
+			<span data-target="app.output"></span>
+		</p>
+		<section data-controller="modal">
+			<button data-target="modal.trigger" data-action="modal#toggle">Trigger Modal</button>
+			<dialog data-target="modal.dialog">
+				This is a
+				<code>&lt;dialog></code> element.
+			</dialog>
+		</section>
+	</main>
+	<script src="./src/index.js"></script>
+</body>
+
+</html>
