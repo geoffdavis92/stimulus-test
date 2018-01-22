@@ -29,21 +29,6 @@
 </head>
 
 <body>
-	<main data-controller="app" style="display:none">
-		<label for="name">Name
-			<input type="text" name="name" id="name" data-target="app.input" data-action="input->app#echo">
-		</label>
-		<p>Hello
-			<span data-target="app.output"></span>
-		</p>
-		<section data-controller="modal">
-			<button data-target="modal.trigger" data-action="modal#toggle">Trigger Modal</button>
-			<dialog data-target="modal.dialog">
-				This is a
-				<code>&lt;dialog></code> element.
-			</dialog>
-		</section>
-	</main>
 	<main data-controller="todo" class="todo-app container">
 		<header>
 			<h1>Stimulus Todo</h1>
