@@ -22,19 +22,21 @@ export default class Todo extends Controller {
 	}
 	add(e) {
 		e.preventDefault();
-		const { text = "", todos } = this.state.get(["text", "todos"]);
+		const { text = false, todos } = this.state.get(["text", "todos"]);
 
-		this.todoTable.innerHTML += this.createHTML({
-			text,
-			key: todos.length
-		});
+		if (text) {
+			this.todoTable.innerHTML += this.createHTML({
+				text,
+				key: todos.length
+			});
 
-		const newTodos = [...todos];
-		newTodos.push({ key: todos.length, text });
-		this.state.set({ todos: newTodos });
+			const newTodos = [...todos];
+			newTodos.push({ key: todos.length, text });
+			this.state.set({ todos: newTodos, text: "" });
 
-		this.todoForm.reset();
-		this.todoText.focus();
+			this.todoForm.reset();
+			this.todoText.focus();
+		}
 	}
 	remove(e) {
 		const { todos } = this.state.get(["todos"]);

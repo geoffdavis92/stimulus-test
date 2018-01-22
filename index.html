@@ -36,16 +36,16 @@
 		<section class="columns">
 			<form action="#!" method="GET" data-target="todo.todoForm" data-action="submit->todo#add" class="todo-form column col-4">
 				<label for="todo_text">
-					<span>Task:</span>
+					<span>Todo:</span>
 					<input type="text" name="todo_text" id="todo_text" data-target="todo.todoText" data-action="input->todo#updateTodoText">
 				</label>
-				<button class="btn btn-primary" role="submit">Add task</button>
+				<button class="btn btn-primary" role="submit">Add Todo</button>
 			</form>
 			<table class="table table-striped todo-list column col-8" data-target="todo.todoList">
 				<thead>
 					<tr>
 						<th style="width:5em;">Done?</th>
-						<th>Task</th>
+						<th>Todo</th>
 					</tr>
 				</thead>
 				<tbody data-target="todo.todoTable"></tbody>
