@@ -5,7 +5,9 @@
 	"license": "MIT",
 	"private": true,
 	"scripts": {
-		"start": "parcel index.html"
+		"start": "parcel index.html",
+		"build":
+			"parcel build index.html -d docs && mv docs/stimulus-test.html docs/index.html"
 	},
 	"babel": {
 		"presets": [
@@ -19,9 +21,7 @@
 			],
 			"stage-2"
 		],
-		"plugins": [
-			"transform-async-to-generator"
-		]
+		"plugins": ["transform-async-to-generator"]
 	},
 	"devDependencies": {
 		"babel-plugin-transform-async-to-generator": "^6.24.1",
