@@ -1,15 +1,16 @@
 import { Controller } from "stimulus";
 
-const toBool = (entry: string): boolean => entry == "true";
-
-const test = (prototypeToTestFor: string): Function => (
+const toBool: Function = (entry: string): boolean => entry == "true";
+const test: Function = (prototypeToTestFor: string): Function => (
 	variable: any
 ): boolean => variable.__proto__.constructor.name === prototypeToTestFor;
-
 const testForBool: Function = (entry: string): boolean =>
 	test("Boolean")(entry);
 const testForNum: Function = (entry: string): boolean => test("Number")(entry);
 const testForString: Function = (entry: any): boolean => test("String")(entry);
+
+const uglify: Function = (entry: string) =>
+	entry.replace(/\s+/g, "-").toLowerCase();
 
 const registerDataInterface: Function = (
 	Instance: Controller
@@ -65,4 +66,4 @@ const registerDataInterface: Function = (
 	return { get, set };
 };
 
-export { registerDataInterface, toBool };
+export { registerDataInterface, toBool, uglify };
