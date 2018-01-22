@@ -7,7 +7,7 @@
 	"scripts": {
 		"start": "parcel index.html",
 		"build":
-			"parcel build index.html -d docs && mv docs/stimulus-test.html docs/index.html"
+			"parcel build index.html -d docs --public-url ./ && mv docs/stimulus-test.html docs/index.html"
 	},
 	"babel": {
 		"presets": [
