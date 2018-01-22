@@ -1,12 +1,11 @@
 import { Controller } from "stimulus";
-import { registerDataInterface, toBool } from "../utilities";
+import { registerDataInterface, toBool, uglify } from "../utilities";
 
 export default class Todo extends Controller {
 	state = registerDataInterface(this);
 	initialize() {
 		this.state.set({ todos: [], text: "" });
 	}
-	render() {}
 	createHTML({ text, key }) {
 		const textNoQuotes = text.replace(/\"/g, "");
 		const textCapitalized = `${[
@@ -23,15 +22,16 @@ export default class Todo extends Controller {
 	add(e) {
 		e.preventDefault();
 		const { text = false, todos } = this.state.get(["text", "todos"]);
+		const key = uglify(text);
 
 		if (text) {
 			this.todoTable.innerHTML += this.createHTML({
 				text,
-				key: todos.length
+				key
 			});
 
 			const newTodos = [...todos];
-			newTodos.push({ key: todos.length, text });
+			newTodos.push({ key, text });
 			this.state.set({ todos: newTodos, text: "" });
 
 			this.todoForm.reset();
@@ -45,9 +45,15 @@ export default class Todo extends Controller {
 		removedTodoListItem.remove();
 
 		const newTodos = [...todos];
-		const removedTodoListItemIndex = newTodos
-			.filter(t => t.key == e.target.id)
-			.map((t, i) => i);
+		const [removedTodoListItemIndex] = newTodos
+			.map((todo, index) => {
+				if (todo.key == e.target.id) {
+					return index;
+				} else {
+					return false;
+				}
+			})
+			.filter(todo => todo);
 
 		newTodos.splice(removedTodoListItemIndex, 1);
 		this.state.set({ todos: newTodos });
